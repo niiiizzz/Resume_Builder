@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Resume Builder - Auth</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#06b6d4", /* Cyan for neon electric feel per description */
+              "primary-glow": "#22d3ee",
+              "background-light": "#f7f5f8", /* Kept as fallback though unused in dark mode force */
+              "background-dark": "#0c1220", /* Deep dark blue-black */
+              "surface-dark": "#131b2e",
+              "border-dark": "#1e293b",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+            boxShadow: {
+                "neon": "0 0 15px rgba(6, 182, 212, 0.4), 0 0 5px rgba(6, 182, 212, 0.2)",
+                "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar hide for cleaner mobile view */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom gradient text utility since tailwind sometimes needs specific help */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Ambient Background Effects -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none"></div>
+<!-- Main Container (Mobile Phone Frame Simulation) -->
+<main class="relative z-10 w-full max-w-[420px] min-h-screen md:min-h-0 md:h-auto md:max-h-[850px] flex flex-col p-6">
+<!-- Header Section -->
+<header class="flex flex-col items-center justify-center py-8">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-600/20 border border-primary/30 flex items-center justify-center mb-6 shadow-neon backdrop-blur-sm">
+<span class="material-symbols-outlined text-4xl text-primary drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">description</span>
+</div>
+<h1 class="text-3xl font-extrabold text-center tracking-tight text-white mb-2">
+<span class="bg-gradient-to-r from-white via-primary-glow to-primary text-gradient">AI Resume Builder</span>
+</h1>
+<p class="text-slate-400 text-sm text-center font-medium max-w-[280px]">Build your professional future in seconds with electric speed.</p>
+</header>
+<!-- Glass Card -->
+<div class="w-full bg-surface-dark/60 backdrop-blur-xl border border-white/10 rounded-3xl shadow-glass overflow-hidden flex flex-col">
+<!-- Tab Switcher -->
+<div class="flex border-b border-white/5">
+<button class="flex-1 py-4 text-center relative group">
+<span class="text-primary font-bold text-sm tracking-wide">Sign In</span>
+<div class="absolute bottom-0 left-0 w-full h-[3px] bg-primary shadow-[0_-2px_10px_rgba(6,182,212,0.7)] rounded-t-full"></div>
+</button>
+<button class="flex-1 py-4 text-center relative group hover:bg-white/5 transition-colors">
+<span class="text-slate-400 font-bold text-sm tracking-wide group-hover:text-slate-200 transition-colors">Sign Up</span>
+<div class="absolute bottom-0 left-0 w-full h-[3px] bg-transparent transition-all"></div>
+</button>
+</div>
+<!-- Form Content -->
+<div class="p-6 space-y-5">
+<!-- Social Auth (Optional but common in modern auth) -->
+<div class="grid grid-cols-2 gap-3 mb-2">
+<button class="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl h-12 transition-all">
+<img alt="Google" class="w-5 h-5" data-alt="Google logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUFMUHqQCn1yjB_XIj0Sb3eXiqTr_YOM5anst8VRPqsrYEyqxEDElvpwO_CQDMjj4v8AhZ2XBsyIXQdmLS7b6f0rvELt6ZYruVa4zGForwU4IfNVr-sEWGWiNuRI3PKh8K04e3---iJk0HCliBrPRhrnTp-Za3Zis5kgrWEQwbLqyJI3gFv4YYDT7WkVosndNuJI2saSGozBzLo8MnK_vqW6fAqaoulEPSLnAKqF9gq8NZfQx-NqpQvtN4o-1n0_LPWQ-QLVRVB2SQ"/>
+<span class="text-slate-200 text-sm font-medium">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl h-12 transition-all">
+<span class="material-symbols-outlined text-white text-[22px]">ios</span>
+<span class="text-slate-200 text-sm font-medium">Apple</span>
+</button>
+</div>
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-white/10"></div>
+<span class="flex-shrink-0 mx-4 text-xs font-medium text-slate-500 uppercase">Or continue with</span>
+<div class="flex-grow border-t border-white/10"></div>
+</div>
+<!-- Email Field -->
+<div class="space-y-2 group">
+<label class="text-slate-300 text-sm font-medium ml-1">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-500 group-focus-within:text-primary transition-colors">mail</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-4 bg-[#0c1220] border border-white/10 rounded-xl text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-inner" placeholder="name@example.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2 group">
+<div class="flex justify-between items-center ml-1">
+<label class="text-slate-300 text-sm font-medium">Password</label>
+<a class="text-xs text-primary/80 hover:text-primary transition-colors" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-500 group-focus-within:text-primary transition-colors">lock</span>
+</div>
+<input class="block w-full pl-11 pr-12 py-4 bg-[#0c1220] border border-white/10 rounded-xl text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-inner" placeholder="••••••••" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-500 hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-xl">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full h-14 mt-4 bg-primary hover:bg-primary-glow text-background-dark font-bold text-lg rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:animate-pulse">bolt</span>
+                    Sign In
+                </button>
+</div>
+</div>
+<!-- Footer / Back Action -->
+<div class="mt-auto pt-8 flex flex-col items-center gap-6">
+<button class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group px-4 py-2 rounded-lg border border-transparent hover:border-white/10 hover:bg-white/5">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="text-sm font-medium">Back to Home</span>
+</button>
+<p class="text-xs text-slate-600 text-center max-w-[200px]">
+                By signing in, you agree to our <a class="underline hover:text-slate-400" href="#">Terms</a> and <a class="underline hover:text-slate-400" href="#">Privacy Policy</a>.
+            </p>
+</div>
+</main>
+</body></html>

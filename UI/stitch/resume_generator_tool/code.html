@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume Generator</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#a83df5",
+                "background-light": "#f7f5f8",
+                "background-dark": "#1b1022",
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetics on mobile web */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a3b54;
+            border-radius: 10px;
+        }
+        /* Glassmorphism helpers */
+        .glass-panel {
+            background: rgba(40, 30, 48, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(168, 61, 245, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background-light/90 dark:bg-[#1b1022]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
+<button class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full active:bg-gray-200 dark:active:bg-white/10 text-slate-500 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Resume Generator</h1>
+<button class="flex h-10 w-10 items-center justify-center rounded-full active:bg-gray-200 dark:active:bg-white/10 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-primary">help</span>
+</button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Progress / Intro -->
+<div class="px-5 py-6">
+<div class="flex items-center gap-3 mb-2">
+<span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">auto_awesome</span>
+</span>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">AI Powered Assistant</p>
+</div>
+<h2 class="text-2xl font-bold leading-tight mb-2">Let's build your profile</h2>
+<p class="text-slate-600 dark:text-slate-400 text-sm">Fill in the details below and our AI will craft a professional resume tailored for your target role.</p>
+</div>
+<!-- Form Section -->
+<div class="flex flex-col gap-5 px-5">
+<!-- Personal Info Group -->
+<div class="flex gap-4">
+<label class="flex flex-col flex-1">
+<span class="text-sm font-medium pb-2 text-slate-700 dark:text-slate-300">Full Name</span>
+<input class="form-input w-full rounded-xl border-gray-300 dark:border-white/10 bg-white dark:bg-[#281e30] focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all" placeholder="Jane Doe" type="text"/>
+</label>
+</div>
+<label class="flex flex-col">
+<span class="text-sm font-medium pb-2 text-slate-700 dark:text-slate-300">Target Role</span>
+<input class="form-input w-full rounded-xl border-gray-300 dark:border-white/10 bg-white dark:bg-[#281e30] focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all" placeholder="Senior Product Designer" type="text"/>
+</label>
+<!-- Professional Summary -->
+<label class="flex flex-col">
+<div class="flex justify-between items-baseline pb-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Professional Summary</span>
+<button class="text-xs font-semibold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">bolt</span> Auto-write
+                        </button>
+</div>
+<textarea class="form-textarea w-full rounded-xl border-gray-300 dark:border-white/10 bg-white dark:bg-[#281e30] focus:border-primary focus:ring-1 focus:ring-primary min-h-[120px] p-4 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all resize-none" placeholder="Passionate designer with 5+ years of experience leading UI/UX projects..."></textarea>
+</label>
+<!-- Skills Selection -->
+<div class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Core Skills</span>
+<div class="flex flex-wrap gap-2">
+<button class="group flex h-9 items-center gap-2 rounded-lg bg-primary text-white px-3 text-sm font-medium shadow-md shadow-primary/20 transition-all">
+<span>Figma</span>
+<span class="material-symbols-outlined opacity-70 group-hover:opacity-100" style="font-size: 16px;">close</span>
+</button>
+<button class="group flex h-9 items-center gap-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary border border-primary/20 px-3 text-sm font-medium transition-all hover:bg-primary/20 dark:hover:bg-primary/30">
+<span>Prototyping</span>
+<span class="material-symbols-outlined opacity-70 group-hover:opacity-100" style="font-size: 16px;">add</span>
+</button>
+<button class="group flex h-9 items-center gap-2 rounded-lg bg-white dark:bg-[#281e30] border border-gray-200 dark:border-white/10 px-3 text-sm font-medium text-slate-600 dark:text-slate-300 transition-all hover:border-primary/50 hover:text-primary">
+<span>User Research</span>
+<span class="material-symbols-outlined opacity-50 group-hover:text-primary" style="font-size: 16px;">add</span>
+</button>
+<button class="group flex h-9 items-center gap-2 rounded-lg bg-white dark:bg-[#281e30] border border-gray-200 dark:border-white/10 px-3 text-sm font-medium text-slate-600 dark:text-slate-300 transition-all hover:border-primary/50 hover:text-primary">
+<span>Wireframing</span>
+<span class="material-symbols-outlined opacity-50 group-hover:text-primary" style="font-size: 16px;">add</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-dashed border-gray-300 dark:border-white/20 text-slate-400 hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+</div>
+<!-- Experience -->
+<label class="flex flex-col mt-2">
+<span class="text-sm font-medium pb-2 text-slate-700 dark:text-slate-300">Work Experience</span>
+<textarea class="form-textarea w-full rounded-xl border-gray-300 dark:border-white/10 bg-white dark:bg-[#281e30] focus:border-primary focus:ring-1 focus:ring-primary min-h-[140px] p-4 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all resize-none" placeholder="Paste your LinkedIn experience or type brief role descriptions here..."></textarea>
+</label>
+<!-- Education -->
+<label class="flex flex-col mt-2">
+<span class="text-sm font-medium pb-2 text-slate-700 dark:text-slate-300">Education</span>
+<input class="form-input w-full rounded-xl border-gray-300 dark:border-white/10 bg-white dark:bg-[#281e30] focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all" placeholder="University, Degree, Year" type="text"/>
+</label>
+</div>
+<!-- Divider -->
+<div class="my-8 mx-5 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/10 to-transparent"></div>
+<!-- Preview Section (Simulated Output) -->
+<div class="px-5 pb-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Preview</h3>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">Draft Mode</span>
+</div>
+<div class="relative w-full rounded-xl overflow-hidden bg-white dark:bg-[#251b2c] border border-gray-200 dark:border-white/5 shadow-lg">
+<!-- Resume Paper Effect -->
+<div class="p-6 space-y-4 min-h-[300px] text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+<div class="border-b border-gray-200 dark:border-white/10 pb-3">
+<div class="h-4 w-1/2 bg-slate-200 dark:bg-white/10 rounded mb-2"></div>
+<div class="h-3 w-1/3 bg-primary/20 rounded"></div>
+</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-slate-100 dark:bg-white/5 rounded"></div>
+<div class="h-2 w-full bg-slate-100 dark:bg-white/5 rounded"></div>
+<div class="h-2 w-3/4 bg-slate-100 dark:bg-white/5 rounded"></div>
+</div>
+<div class="space-y-3 pt-2">
+<div class="flex justify-between">
+<div class="h-3 w-1/3 bg-slate-200 dark:bg-white/10 rounded"></div>
+<div class="h-3 w-12 bg-slate-100 dark:bg-white/5 rounded"></div>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-white/5 rounded"></div>
+<div class="h-2 w-5/6 bg-slate-100 dark:bg-white/5 rounded"></div>
+</div>
+<!-- Blur overlay to suggest generation needed -->
+<div class="absolute inset-0 bg-white/60 dark:bg-[#1b1022]/60 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 text-center">
+<div class="bg-background-light dark:bg-background-dark p-4 rounded-full mb-3 shadow-lg ring-1 ring-white/10">
+<span class="material-symbols-outlined text-primary text-3xl">magic_button</span>
+</div>
+<p class="text-sm font-medium text-slate-800 dark:text-white">Ready to generate</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Fill the details above to see your resume here</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons Row (Hidden state initially, but shown here as requested for UI) -->
+<div class="grid grid-cols-3 gap-3 mt-6">
+<button class="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors group">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">bookmark</span>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">Save</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors group">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">picture_as_pdf</span>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">PDF</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors group">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">description</span>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">DOCX</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-5 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent max-w-md mx-auto">
+<button class="relative w-full overflow-hidden rounded-xl bg-primary py-4 px-6 text-white font-bold text-base shadow-lg shadow-primary/30 transition-transform active:scale-[0.98] group neon-glow">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1s_infinite]"></div>
+<div class="flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">stars</span>
+<span>Generate Resume</span>
+</div>
+</button>
+</div>
+</div>
+</body></html>
