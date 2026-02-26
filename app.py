@@ -39,11 +39,11 @@ def load_css():
     css += """
     /* ── Inline Critical Overrides ── */
     .stApp, [data-testid="stAppViewContainer"], .main {
-        background: linear-gradient(180deg, #0A0A0A 0%, #111111 50%, #0A0A0A 100%) !important;
+        background: #1b1022 !important;
         background-attachment: fixed !important;
     }
     section[data-testid="stSidebar"] > div {
-        background: linear-gradient(180deg, #060a14 0%, #0a1226 50%, #060a14 100%) !important;
+        background: linear-gradient(180deg, #150c1a 0%, #1b1022 50%, #150c1a 100%) !important;
     }
     /* Fix password eye-button overlap */
     .stTextInput > div { position: relative !important; }
@@ -69,11 +69,11 @@ def load_css():
     /* Form padding fix */
     [data-testid="stForm"] {
         padding: 1.5rem !important;
-        background: rgba(10, 15, 26, 0.85) !important;
+        background: rgba(37, 22, 46, 0.6) !important;
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
-        border: 1px solid rgba(0,229,255,0.12) !important;
-        border-radius: 14px !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 1.5rem !important;
     }
     """
 
@@ -108,8 +108,6 @@ _DEFAULTS = {
     "user": None,
     "page": "landing",
     "dashboard_page": "dashboard_home",
-    "show_pw_si": False,
-    "show_pw_su": False,
 }
 for k, v in _DEFAULTS.items():
     if k not in st.session_state:
@@ -122,16 +120,23 @@ for k, v in _DEFAULTS.items():
 
 def render_landing():
     # --- Navbar ---
-    nav_cols = st.columns([3, 1, 1, 1, 1])
-    with nav_cols[0]:
-        st.markdown("### ⚡ **AI Resume Builder**")
-    with nav_cols[2]:
+    st.markdown("""
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:0.8rem 0; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span class="material-symbols-outlined" style="color:#06b6d4; font-size:1.8rem;">bolt</span>
+            <span style="font-size:1.2rem; font-weight:700; background:linear-gradient(90deg, #fff, #06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">AI Resume</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    nav_cols = st.columns([4, 1, 1, 1])
+    with nav_cols[1]:
         if st.button("Features", key="nav_feat"):
             pass
-    with nav_cols[3]:
+    with nav_cols[2]:
         if st.button("About", key="nav_about"):
             pass
-    with nav_cols[4]:
+    with nav_cols[3]:
         if st.button("Sign In", key="nav_signin"):
             st.session_state["page"] = "auth"
             st.rerun()
@@ -139,13 +144,20 @@ def render_landing():
     # --- Hero ---
     st.markdown("""
     <div class="hero">
-        <h1>AI Resume & Portfolio Builder</h1>
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.3rem 0.8rem; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem; backdrop-filter:blur(4px);">
+            <span style="position:relative; display:inline-flex; width:8px; height:8px;">
+                <span style="position:absolute; display:inline-flex; width:100%; height:100%; border-radius:50%; background:#06b6d4; opacity:0.75; animation:ping 1s cubic-bezier(0,0,0.2,1) infinite;"></span>
+                <span style="position:relative; display:inline-flex; width:8px; height:8px; border-radius:50%; background:#06b6d4;"></span>
+            </span>
+            <span style="font-size:0.7rem; font-weight:600; color:#06b6d4; text-transform:uppercase; letter-spacing:0.1em;">v2.0 Now Live</span>
+        </div>
+        <h1>Build your future with<br><span style="background:linear-gradient(90deg, #06b6d4, #fff, #a83df5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:none;">Electric Speed</span></h1>
         <p>
-            Craft ATS-optimized resumes, tailor them to any job description,
-            generate stunning cover letters, and build your professional portfolio
-            — all powered by AI.
+            Create professional resumes and portfolios in minutes with our advanced
+            AI technology. Stand out from the crowd with neon-charged designs.
         </p>
     </div>
+    <style>@keyframes ping{75%,100%{transform:scale(2);opacity:0}}</style>
     """, unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns([1, 2, 1])
@@ -153,12 +165,12 @@ def render_landing():
         st.markdown('<div class="hero-btn-group">', unsafe_allow_html=True)
         col_a, col_b = st.columns(2)
         with col_a:
-            if st.button("🚀  Get Started", key="hero_start", use_container_width=True):
+            if st.button("🚀  Build Resume Now", key="hero_start", use_container_width=True):
                 st.session_state["page"] = "auth"
                 st.rerun()
         with col_b:
             st.markdown('<div class="secondary-btn">', unsafe_allow_html=True)
-            if st.button("🔑  Sign In", key="hero_signin", use_container_width=True):
+            if st.button("View Templates", key="hero_signin", use_container_width=True):
                 st.session_state["page"] = "auth"
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
@@ -167,14 +179,20 @@ def render_landing():
     st.markdown("---")
 
     # --- Features ---
-    st.markdown("## ✨ Key Features")
+    st.markdown("""
+    <div style="text-align:center; margin-bottom:2rem;">
+        <h2 style="font-size:2rem !important; font-weight:900 !important; background:linear-gradient(180deg, #fff, #94a3b8); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Powerful Features</h2>
+        <p style="color:#94a3b8; font-size:1.05rem;">Everything you need to land your dream job, supercharged by AI.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
     features = [
-        ("📝", "Resume Generator", "AI-crafted, ATS-optimized resumes using action verbs and quantified achievements."),
-        ("🎯", "JD Optimization", "Tailor your resume to any job description — boost keyword match and ATS score."),
-        ("✉️", "Cover Letter Generator", "Personalised, role-specific cover letters that stand out."),
-        ("🌐", "Portfolio Builder", "Professional About Me, bios, project descriptions, and LinkedIn summaries."),
-        ("📊", "ATS Score Analyzer", "Simulate ATS screening — get your score, missing keywords, and actionable tips."),
-        ("🔒", "Secure & Private", "Your data is encrypted and stored securely. Only you can access your content."),
+        ("description",  "Resume Generator",     "Instantly generate tailored resumes based on your experience."),
+        ("tune",         "JD Optimization",      "Align your resume keywords perfectly with job descriptions."),
+        ("auto_fix_high","Cover Letter Generator","Draft compelling cover letters in seconds that match your tone."),
+        ("work",         "Portfolio Builder",     "Showcase your best work with stunning, auto-generated layouts."),
+        ("analytics",    "ATS Score Analyzer",    "Get detailed insights on how to improve your resume's pass rate."),
+        ("lock",         "Secure & Private",      "Your data is encrypted and safe. We prioritize your privacy above all."),
     ]
 
     rows = [features[i:i + 3] for i in range(0, len(features), 3)]
@@ -184,7 +202,9 @@ def render_landing():
             with col:
                 st.markdown(f"""
                 <div class="feature-card">
-                    <div class="feature-icon">{icon}</div>
+                    <div style="width:48px; height:48px; border-radius:0.75rem; background:linear-gradient(135deg, rgba(6,182,212,0.2), rgba(168,61,245,0.2)); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+                        <span class="material-symbols-outlined" style="color:#fff; font-size:1.5rem;">{icon}</span>
+                    </div>
                     <div class="feature-title">{title}</div>
                     <div class="feature-desc">{desc}</div>
                 </div>
@@ -193,34 +213,44 @@ def render_landing():
     st.markdown("---")
 
     # --- Benefits ---
-    st.markdown("## 🏆 Why Choose Us")
+    st.markdown("""
+    <div style="margin-bottom:1.5rem;">
+        <h2 style="font-size:2rem !important; font-weight:900 !important;">Why <span style="color:#06b6d4;">Choose Us?</span></h2>
+        <p style="color:#94a3b8;">Experience the future of career building tools. We've optimized every step.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
     b1, b2, b3 = st.columns(3)
     with b1:
         st.markdown("""
         <div class="benefit-card">
             <h4>⚡ Lightning Fast</h4>
-            <p>Generate professional documents in seconds, not hours.</p>
+            <p>Build in seconds, not hours.</p>
         </div>
         """, unsafe_allow_html=True)
     with b2:
         st.markdown("""
         <div class="benefit-card">
             <h4>🤖 AI-Powered</h4>
-            <p>Backed by state-of-the-art language models for human-quality output.</p>
+            <p>Smart suggestions & content backed by cutting-edge AI models.</p>
         </div>
         """, unsafe_allow_html=True)
     with b3:
         st.markdown("""
         <div class="benefit-card">
             <h4>📈 ATS Optimized</h4>
-            <p>Every resume is engineered to pass automated screening systems.</p>
+            <p>Beat applicant tracking systems. Every resume is engineered to pass.</p>
         </div>
         """, unsafe_allow_html=True)
 
     # --- Footer ---
     st.markdown("""
     <div class="footer">
-        © 2026 AI Resume Builder — Built with ❤️ and AI
+        <div style="display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-bottom:1rem;">
+            <span class="material-symbols-outlined" style="color:#06b6d4; font-size:1.5rem;">bolt</span>
+            <span style="font-size:1.1rem; font-weight:700; color:#fff;">AI Resume Builder</span>
+        </div>
+        <p>Built with ❤️ and AI. © 2026 AI Resume Builder</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -245,17 +275,16 @@ def render_auth():
         # Header card
         st.markdown("""
         <div style="text-align:center; margin-bottom:1.8rem;">
+            <div style="width:64px; height:64px; border-radius:1rem; background:linear-gradient(135deg, rgba(6,182,212,0.2), rgba(168,61,245,0.2)); border:1px solid rgba(6,182,212,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; box-shadow:0 0 15px rgba(6,182,212,0.4);">
+                <span class="material-symbols-outlined" style="font-size:2rem; color:#06b6d4; filter:drop-shadow(0 0 8px rgba(6,182,212,0.8));">description</span>
+            </div>
             <h1 style="
-                font-size:2rem;
+                font-size:1.8rem;
                 font-weight:800;
-                background: linear-gradient(135deg, #00E5FF, #00B8D9);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
                 margin-bottom:0.4rem;
-            ">📄 AI Resume Builder</h1>
-            <p style="color:#7A8BA8; font-size:0.95rem;">
-                Sign in to your account or create a new one
+            "><span style="background:linear-gradient(90deg, #fff, #22d3ee, #06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">AI Resume Builder</span></h1>
+            <p style="color:#94a3b8; font-size:0.9rem; max-width:280px; margin:0 auto;">
+                Build your professional future in seconds with electric speed.
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -270,20 +299,12 @@ def render_auth():
                 st.markdown("<div style='height:0.4rem'></div>", unsafe_allow_html=True)
                 password = st.text_input(
                     "Password",
-                    type="default" if st.session_state["show_pw_si"] else "password",
+                    type="password",
                     placeholder="Enter your password",
                     key="si_pass",
                 )
                 st.markdown("<div style='height:1.2rem'></div>", unsafe_allow_html=True)
                 submitted = st.form_submit_button("⚡ Sign In", use_container_width=True)
-
-            # Toggle button OUTSIDE the form
-            toggle_label = "🙈 Hide password" if st.session_state["show_pw_si"] else "👁 Show password"
-            st.markdown('<div class="pw-toggle">', unsafe_allow_html=True)
-            if st.button(toggle_label, key="toggle_pw_si"):
-                st.session_state["show_pw_si"] = not st.session_state["show_pw_si"]
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
             if submitted:
                 if not email or not password:
@@ -310,27 +331,19 @@ def render_auth():
                 st.markdown("<div style='height:0.3rem'></div>", unsafe_allow_html=True)
                 pw1 = st.text_input(
                     "Password",
-                    type="default" if st.session_state["show_pw_su"] else "password",
+                    type="password",
                     key="su_pw1",
                     placeholder="Min 8 chars, 1 uppercase, 1 number",
                 )
                 st.markdown("<div style='height:0.3rem'></div>", unsafe_allow_html=True)
                 pw2 = st.text_input(
                     "Confirm Password",
-                    type="default" if st.session_state["show_pw_su"] else "password",
+                    type="password",
                     key="su_pw2",
                     placeholder="Re-enter your password",
                 )
                 st.markdown("<div style='height:1.2rem'></div>", unsafe_allow_html=True)
                 submitted_su = st.form_submit_button("🚀 Create Account", use_container_width=True)
-
-            # Toggle button OUTSIDE the form
-            toggle_label_su = "🙈 Hide passwords" if st.session_state["show_pw_su"] else "👁 Show passwords"
-            st.markdown('<div class="pw-toggle">', unsafe_allow_html=True)
-            if st.button(toggle_label_su, key="toggle_pw_su"):
-                st.session_state["show_pw_su"] = not st.session_state["show_pw_su"]
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
             if submitted_su:
                 if not name or not email_su or not pw1:
@@ -418,33 +431,81 @@ def render_dashboard():
 
 def _page_dashboard_home():
     user = get_current_user()
-    st.markdown(f"# Welcome back, {user['name']}! 👋")
-    st.markdown("Use the sidebar to access all tools.")
-    st.markdown("---")
+
+    # --- Dashboard Header ---
+    st.markdown(f"""
+    <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:0.5rem;">
+        <div style="width:40px; height:40px; border-radius:50%; background:rgba(168,61,245,0.2); display:flex; align-items:center; justify-content:center;">
+            <span class="material-symbols-outlined" style="color:#a83df5;">dashboard</span>
+        </div>
+        <h1 style="font-size:1.5rem !important; margin:0 !important;">Dashboard</h1>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:0.3rem;">👋 Hi, {user['name']}</p>
+    <h2 style="font-size:1.8rem !important; font-weight:700 !important; margin-bottom:1.5rem;">Welcome back!</h2>
+    """, unsafe_allow_html=True)
 
     # Centralized data refresh
     dash = refresh_user_dashboard(user["id"])
 
-    c1, c2 = st.columns(2)
+    # --- Stat Cards ---
+    c1, c2, c3 = st.columns(3)
     with c1:
-        st.metric("📝 Resumes Saved", dash["resume_count"])
+        st.markdown(f"""
+        <div class="stat-card">
+            <span class="stat-watermark">📝</span>
+            <div class="stat-label">Resumes Saved</div>
+            <div class="stat-value">{dash["resume_count"]}</div>
+        </div>
+        """, unsafe_allow_html=True)
     with c2:
-        st.metric("📊 ATS Analyses", dash["ats_count"])
+        st.markdown(f"""
+        <div class="stat-card">
+            <span class="stat-watermark">✉️</span>
+            <div class="stat-label">Cover Letters</div>
+            <div class="stat-value">{dash.get("cover_letter_count", 0)}</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with c3:
+        st.markdown(f"""
+        <div class="stat-card">
+            <span class="stat-watermark">📊</span>
+            <div class="stat-label">ATS Analyses</div>
+            <div class="stat-value">{dash["ats_count"]}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("---")
 
-    st.markdown("### 🚀 Quick Actions")
-    cols = st.columns(3)
-    with cols[0]:
-        if st.button("📝 Create Resume", use_container_width=True):
-            st.session_state["dashboard_page"] = "resume_gen"
-            st.rerun()
-    with cols[1]:
-        if st.button("🎯 Optimize for JD", use_container_width=True):
+    # --- Quick Actions ---
+    st.markdown("<h3 style='font-size:1.15rem !important; font-weight:700 !important; margin-bottom:1rem;'>Quick Actions</h3>", unsafe_allow_html=True)
+    if st.button("➕  Create New Resume", use_container_width=True, key="qa_resume"):
+        st.session_state["dashboard_page"] = "resume_gen"
+        st.rerun()
+
+    qa1, qa2 = st.columns(2)
+    with qa1:
+        st.markdown("""
+        <div class="quick-action-secondary">
+            <div class="action-icon purple">🎯</div>
+            <div class="action-title">Optimize JD</div>
+            <div class="action-subtitle">Match keywords</div>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Optimize for JD", use_container_width=True, key="qa_jd"):
             st.session_state["dashboard_page"] = "jd_opt"
             st.rerun()
-    with cols[2]:
-        if st.button("📊 Analyze ATS Score", use_container_width=True):
+    with qa2:
+        st.markdown("""
+        <div class="quick-action-secondary">
+            <div class="action-icon cyan">📊</div>
+            <div class="action-title">Analyze ATS</div>
+            <div class="action-subtitle">Score your CV</div>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Analyze ATS Score", use_container_width=True, key="qa_ats"):
             st.session_state["dashboard_page"] = "ats_analyzer"
             st.rerun()
 
@@ -461,19 +522,51 @@ def _page_dashboard_home():
         st.markdown("---")
         st.markdown("### 📊 Recent ATS Scores")
         for s in dash["recent_ats_scores"]:
-            col_s, col_p = st.columns([1, 3])
-            with col_s:
-                st.metric("Score", f"{s['score']}%")
-            with col_p:
-                st.progress(min(s["score"] / 100, 1.0))
-                if s["missing_keywords"]:
-                    st.caption(f"Missing: {s['missing_keywords'][:80]}…")
+            score_color = "#a83df5" if s["score"] >= 70 else "#10b981" if s["score"] >= 50 else "#f59e0b"
+            st.markdown(f"""
+            <div class="activity-item">
+                <div class="activity-left">
+                    <div class="activity-icon green">📊</div>
+                    <div>
+                        <div class="activity-title">ATS Score: <span style="color:{score_color}">{s['score']}%</span></div>
+                        <div class="activity-subtitle">{s['created_at']}</div>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # --- Recent Resumes ---
+    if dash["recent_resumes"]:
+        st.markdown("---")
+        st.markdown("### 📝 Recent Resumes")
+        for r in dash["recent_resumes"]:
+            badge = r.get("resume_type", "original")
+            badge_color = "#a83df5" if badge == "optimized" else "#06b6d4" if badge == "portfolio" else "#10b981"
+            st.markdown(f"""
+            <div class="activity-item">
+                <div class="activity-left">
+                    <div class="activity-icon blue">📝</div>
+                    <div>
+                        <div class="activity-title">{r['snippet']}</div>
+                        <div class="activity-subtitle">
+                            <span style="color:{badge_color}; font-weight:600; text-transform:capitalize;">{badge}</span> · {r['created_at']}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
 
 
 # ── Resume Generator ─────────────────────────────────────────────────────
 
 def _page_resume_generator():
     render_back_to_dashboard()
+    st.markdown("""
+    <div class="section-header">
+        <div class="header-badge">✨</div>
+        <div class="header-label">AI Powered Assistant</div>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("# 📝 Resume Generator")
     st.markdown("Fill in your details and let AI craft a professional, ATS-optimized resume.")
     st.markdown("---")
@@ -707,20 +800,45 @@ def _page_cover_letter():
             try:
                 from ai.cover_letter import generate_cover_letter
                 letter = generate_cover_letter(company, role, why_interested, strengths)
+                st.session_state["generated_cover_letter"] = {
+                    "company": company, "role": role, "content": letter
+                }
             except Exception as e:
                 st.error(f"Generation failed: {e}")
                 return
+
+    # --- Display generated cover letter if available ---
+    if st.session_state.get("generated_cover_letter"):
+        cl_data = st.session_state["generated_cover_letter"]
+        letter = cl_data["content"]
 
         st.markdown("---")
         st.markdown("### ✉️ Your Cover Letter")
         st.markdown(letter)
 
         st.markdown("---")
-        if st.button("💾 Save Cover Letter", key="save_cl", use_container_width=True):
-            if _save_cover_letter(company, role, letter):
-                st.toast("✅ Cover letter saved to your account!")
-            else:
-                st.error("❌ Failed to save cover letter. Please try again.")
+        col_save, col_pdf, col_regen = st.columns(3)
+        with col_save:
+            if st.button("💾 Save Cover Letter", key="save_cl", use_container_width=True):
+                if _save_cover_letter(cl_data["company"], cl_data["role"], letter):
+                    st.toast("✅ Cover letter saved to your account!")
+                else:
+                    st.error("❌ Failed to save cover letter. Please try again.")
+        with col_pdf:
+            from utils.export import resume_to_pdf
+            pdf_bytes = resume_to_pdf(letter)
+            st.download_button(
+                label="📄 Download PDF",
+                data=pdf_bytes,
+                file_name="cover_letter.pdf",
+                mime="application/pdf",
+                key="dl_cl_pdf",
+                use_container_width=True,
+            )
+        with col_regen:
+            if st.button("🔄 Regenerate", key="regen_cl", use_container_width=True):
+                del st.session_state["generated_cover_letter"]
+                st.rerun()
 
 
 def _save_cover_letter(company: str, role: str, content: str) -> bool:
@@ -781,9 +899,14 @@ def _page_portfolio():
             try:
                 from ai.portfolio import generate_portfolio
                 result = generate_portfolio(details)
+                st.session_state["generated_portfolio"] = result
             except Exception as e:
                 st.error(f"Generation failed: {e}")
                 return
+
+    # --- Display generated portfolio if available ---
+    if st.session_state.get("generated_portfolio"):
+        result = st.session_state["generated_portfolio"]
 
         st.markdown("---")
 
@@ -800,12 +923,59 @@ def _page_portfolio():
         with tabs[4]:
             st.markdown(f"### {result.get('tagline', '')}")
 
+        # Combine all sections into one document for saving/downloading
+        full_content = f"""# Portfolio — {get_current_user()['name']}
+
+## About Me
+{result.get('about_me', '')}
+
+## Professional Bio
+{result.get('bio', '')}
+
+## Projects
+{result.get('projects', '')}
+
+## LinkedIn Summary
+{result.get('linkedin_summary', '')}
+
+## Tagline
+{result.get('tagline', '')}
+"""
+
+        st.markdown("---")
+        col_save, col_pdf, col_regen = st.columns(3)
+        with col_save:
+            if st.button("💾 Save to Account", key="save_portfolio", use_container_width=True):
+                if _save_resume(full_content, resume_type="portfolio"):
+                    st.toast("✅ Portfolio saved to your account!")
+                else:
+                    st.error("❌ Failed to save portfolio. Please try again.")
+        with col_pdf:
+            from utils.export import resume_to_pdf
+            pdf_bytes = resume_to_pdf(full_content)
+            st.download_button(
+                label="📄 Download PDF",
+                data=pdf_bytes,
+                file_name="portfolio.pdf",
+                mime="application/pdf",
+                key="dl_portfolio_pdf",
+                use_container_width=True,
+            )
+        with col_regen:
+            if st.button("🔄 Regenerate", key="regen_portfolio", use_container_width=True):
+                del st.session_state["generated_portfolio"]
+                st.rerun()
+
 
 # ── ATS Analyzer ──────────────────────────────────────────────────────────
 
 def _page_ats_analyzer():
     render_back_to_dashboard()
-    st.markdown("# 📊 ATS Score Analyzer")
+    st.markdown("""
+    <div style="text-align:center; margin-bottom:0.5rem;">
+        <h1 style="font-size:1.3rem !important; font-weight:700 !important; background:linear-gradient(90deg, #fff, rgba(168,61,245,0.8)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">ATS Score Analyzer</h1>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("Simulate ATS screening and see how well your resume matches a job description.")
     st.markdown("---")
 
@@ -874,13 +1044,13 @@ def _page_ats_analyzer():
         # --- Overall Score Badge ---
         score = result["score"]
         if score >= 75:
-            color, grade = "#00E5FF", "Strong"
+            color, grade = "#a83df5", "Strong Match"
         elif score >= 60:
-            color, grade = "#4CAF50", "Moderate"
+            color, grade = "#10b981", "Moderate"
         elif score >= 45:
-            color, grade = "#FFB300", "Weak"
+            color, grade = "#f59e0b", "Weak"
         else:
-            color, grade = "#FF3B5C", "Poor"
+            color, grade = "#ef4444", "Poor"
 
         st.markdown(f"""
         <div class="score-display">
@@ -903,7 +1073,7 @@ def _page_ats_analyzer():
         ]
         for col, (label, val) in zip(cat_cols[:3], layer_items):
             with col:
-                lbl_color = "#00E5FF" if val >= 60 else "#FFB300" if val >= 35 else "#FF3B5C"
+                lbl_color = "#a83df5" if val >= 60 else "#f59e0b" if val >= 35 else "#ef4444"
                 st.markdown(f"**{label}**")
                 st.markdown(f"<span style='font-size:1.4rem;font-weight:700;color:{lbl_color}'>{val}%</span>",
                             unsafe_allow_html=True)
@@ -914,7 +1084,7 @@ def _page_ats_analyzer():
         if categories:
             with cat_cols[3]:
                 avg_cat = sum(c["score"] for c in categories.values()) / max(len(categories), 1)
-                avg_color = "#00E5FF" if avg_cat >= 65 else "#FFB300" if avg_cat >= 45 else "#FF3B5C"
+                avg_color = "#a83df5" if avg_cat >= 65 else "#f59e0b" if avg_cat >= 45 else "#ef4444"
                 st.markdown("**📋 Overall Grade**")
                 st.markdown(f"<span style='font-size:1.4rem;font-weight:700;color:{avg_color}'>{avg_cat:.0f}%</span>",
                             unsafe_allow_html=True)
@@ -1028,7 +1198,7 @@ def _page_profile():
         <div class="profile-card">
             <h3>👤 {user['name']}</h3>
             <p>📧 {user['email']}</p>
-            <p style="color:#7A8BA8; font-size:0.85rem; margin-top:0.5rem;">📅 Member since {created_at_str}</p>
+            <p style="color:#94a3b8; font-size:0.85rem; margin-top:0.5rem;">📅 Member since {created_at_str}</p>
         </div>
         """, unsafe_allow_html=True)
 

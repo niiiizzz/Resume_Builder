@@ -38,7 +38,42 @@ def get_db():
         db.close()
 
 
+def _upgrade_schema():
+    """
+    Add columns that were introduced after initial table creation.
+    SQLAlchemy's create_all() only creates NEW tables — it does not
+    ALTER existing tables.  This function safely adds missing columns
+    using raw SQL so the app works with databases created by older
+    versions of the code.
+    """
+    import logging
+    _log = logging.getLogger(__name__)
+
+    # (table, column, sql_type, default_expr)
+    _MIGRATIONS = [
+        ("resumes", "resume_type", "VARCHAR(50)", "'original'"),
+    ]
+
+    from sqlalchemy import text, inspect as sa_inspect
+    insp = sa_inspect(engine)
+
+    for table, column, col_type, default in _MIGRATIONS:
+        if table not in insp.get_table_names():
+            continue  # table doesn't exist yet; create_all will handle it
+        existing_cols = {c["name"] for c in insp.get_columns(table)}
+        if column in existing_cols:
+            continue  # already present
+        alter_sql = f"ALTER TABLE {table} ADD COLUMN {column} {col_type} DEFAULT {default}"
+        try:
+            with engine.begin() as conn:
+                conn.execute(text(alter_sql))
+            _log.info("Schema upgrade: added %s.%s", table, column)
+        except Exception as exc:
+            _log.warning("Schema upgrade skipped %s.%s: %s", table, column, exc)
+
+
 def init_db():
     """Create all tables defined in models.py (safe to call multiple times)."""
     from database.models import User, Resume, ATSScore, CoverLetter  # noqa: F401
     Base.metadata.create_all(bind=engine)
+    _upgrade_schema()

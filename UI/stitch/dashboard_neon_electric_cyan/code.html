@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Resume Builder - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00f2ff", // Cyan neon highlight
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#000000", // Deep Black
+                        "surface-dark": "#080808",
+                        "accent-pink": "#ff007a",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }</script>
+<style>
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.8), 0 0 20px rgba(0, 242, 255, 0.4);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            border-color: rgba(0, 242, 255, 0.3) !important;
+        }
+        .neon-button-glow {
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        }
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-72 bg-slate-100 dark:bg-black border-r border-slate-200 dark:border-white/5 flex flex-col fixed h-full z-50">
+<div class="p-6 flex flex-col h-full">
+<!-- User Profile Section -->
+<div class="flex items-center gap-3 mb-10">
+<div class="size-12 rounded-full bg-gradient-to-tr from-primary to-accent-pink p-0.5">
+<div class="w-full h-full rounded-full bg-background-dark flex items-center justify-center overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="User profile avatar illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgJZUEiXUzmQtVh5vdSgqPAonr2n4Qw5XMVuu8Jofc1lOpPo79TCrEub-BiwsXXOvow5VHPzLX66nIIguY_J9w2u0wgDmd9a5oj9bm69DINBjn6RjbBWCCMhC9AM7vctRNUoHq94_EVS-QQJ_FMO-AI3rOaSHwPP0O_82NiY5vAV_7UQvKBSfuaIgmDP8khyjGTwfW5ajql1LvWgP8LXRyRNNd7vsz67y3YwGd2e0s0b8kqT73ZEazky0zbHreaWD6ziNy2ZH5HQAj"/>
+</div>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-none">👋 Hi, User</h1>
+<p class="text-slate-500 dark:text-primary/70 text-xs mt-1 font-medium uppercase tracking-wider">Pro Member</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Resume Generator</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">target</span>
+<span class="text-sm font-medium">JD Optimization</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-sm font-medium">Cover Letter</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">palette</span>
+<span class="text-sm font-medium">Portfolio Generator</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">ATS Analyzer</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-sm font-medium">Profile</span>
+</a>
+</nav>
+<!-- Logout -->
+<div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+<button class="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-slate-600 dark:text-slate-400 hover:text-accent-pink transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-medium">Logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-72 p-8 overflow-y-auto bg-background-light dark:bg-[#050505]">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Welcome Banner -->
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-black via-zinc-900 to-black p-8 border border-white/10">
+<div class="relative z-10">
+<h2 class="text-white text-3xl font-black mb-2 neon-glow">Welcome back, User! 👋</h2>
+<p class="text-slate-400 text-lg">Your AI-powered career assistant is ready. What's the goal for today?</p>
+</div>
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-white/5 neon-border transition-transform hover:scale-[1.02]">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Resumes Saved</span>
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div class="text-4xl font-black text-slate-900 dark:text-primary neon-glow leading-tight">12</div>
+<div class="mt-2 flex items-center gap-1 text-xs font-bold text-emerald-500">
+<span class="material-symbols-outlined text-sm">trending_up</span> +20% this month
+                        </div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-white/5 neon-border transition-transform hover:scale-[1.02]">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Cover Letters</span>
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<div class="text-4xl font-black text-slate-900 dark:text-primary neon-glow leading-tight">08</div>
+<div class="mt-2 flex items-center gap-1 text-xs font-bold text-emerald-500">
+<span class="material-symbols-outlined text-sm">trending_up</span> +10% this month
+                        </div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-white/5 neon-border transition-transform hover:scale-[1.02]">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 dark:text-slate-400 font-medium">ATS Analyses</span>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="text-4xl font-black text-slate-900 dark:text-primary neon-glow leading-tight">24</div>
+<div class="mt-2 flex items-center gap-1 text-xs font-bold text-emerald-500">
+<span class="material-symbols-outlined text-sm">trending_up</span> +15% this month
+                        </div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="space-y-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="w-1.5 h-6 bg-primary rounded-full neon-button-glow"></span>
+                        Quick Actions
+                    </h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<button class="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-primary text-background-dark font-bold hover:opacity-90 transition-all shadow-lg shadow-primary/20 neon-button-glow">
+<span class="material-symbols-outlined">add_circle</span>
+                            Create Resume
+                        </button>
+<button class="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-surface-dark border border-primary text-primary font-bold hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">target</span>
+                            Optimize for JD
+                        </button>
+<button class="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-surface-dark border border-primary text-primary font-bold hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">query_stats</span>
+                            Analyze ATS Score
+                        </button>
+</div>
+</div>
+<!-- Recent Activity: Expanders -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Recent Cover Letters -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="w-1.5 h-6 bg-accent-pink rounded-full"></span>
+                                Recent Cover Letters
+                            </h3>
+<button class="text-sm text-primary font-medium hover:underline">View All</button>
+</div>
+<div class="space-y-3">
+<details class="group bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden" open="">
+<summary class="list-none flex items-center justify-between p-4 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-100 dark:bg-white/5 rounded-lg">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div>
+<p class="font-bold text-sm">Senior Product Designer</p>
+<p class="text-xs text-slate-500">Google • 2 hours ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform text-slate-400">expand_more</span>
+</summary>
+<div class="px-4 pb-4 text-sm text-slate-500 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4">
+                                    "I am writing to express my strong interest in the Senior Product Designer position at Google. With over 8 years of experience in creating user-centric digital experiences..."
+                                    <div class="mt-3 flex gap-2">
+<button class="text-primary text-xs font-bold uppercase tracking-widest">Edit Draft</button>
+<button class="text-slate-400 text-xs font-bold uppercase tracking-widest ml-4">Download PDF</button>
+</div>
+</div>
+</details>
+<details class="group bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<summary class="list-none flex items-center justify-between p-4 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-100 dark:bg-white/5 rounded-lg">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div>
+<p class="font-bold text-sm">UX Lead</p>
+<p class="text-xs text-slate-500">Airbnb • Yesterday</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform text-slate-400">expand_more</span>
+</summary>
+<div class="px-4 pb-4 text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-4">
+                                    Summary of the generated cover letter content for the UX Lead position...
+                                </div>
+</details>
+</div>
+</div>
+<!-- Recent ATS Scores -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="w-1.5 h-6 bg-primary rounded-full neon-button-glow"></span>
+                                Recent ATS Reports
+                            </h3>
+<button class="text-sm text-primary font-medium hover:underline">Full History</button>
+</div>
+<div class="space-y-3">
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative size-12 flex items-center justify-center">
+<svg class="size-full" viewbox="0 0 36 36">
+<path class="text-slate-200 dark:text-white/5" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="92, 100" stroke-width="3"></path>
+</svg>
+<span class="absolute text-[10px] font-bold">92%</span>
+</div>
+<div>
+<p class="font-bold text-sm">Product Manager Resume</p>
+<p class="text-xs text-slate-500">Target: Meta • Highly Compatible</p>
+</div>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary">arrow_forward_ios</span>
+</button>
+</div>
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative size-12 flex items-center justify-center">
+<svg class="size-full" viewbox="0 0 36 36">
+<path class="text-slate-200 dark:text-white/5" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="3"></path>
+<path class="text-accent-pink" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="74, 100" stroke-width="3"></path>
+</svg>
+<span class="absolute text-[10px] font-bold">74%</span>
+</div>
+<div>
+<p class="font-bold text-sm">Graphic Designer CV</p>
+<p class="text-xs text-slate-500">Target: Adobe • Needs Optimization</p>
+</div>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

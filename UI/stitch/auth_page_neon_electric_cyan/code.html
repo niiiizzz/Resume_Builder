@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ffff",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-morphism {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 255, 255, 0.05);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.2);
+        }
+        .bg-gradient-dark {
+            background: radial-gradient(circle at top left, #050505, #000000);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<div class="relative flex min-h-screen w-full flex-col bg-background-dark bg-gradient-dark overflow-x-hidden">
+<header class="w-full px-6 py-6 lg:px-20 flex justify-between items-center absolute top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-4xl">deployed_code</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">AI Resume Builder</h1>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 text-primary hover:bg-primary/10 transition-all text-sm font-semibold">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+<span>Back to Home</span>
+</button>
+</header>
+<main class="flex-1 flex items-center justify-center p-4 relative">
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
+</div>
+<div class="glass-morphism w-full max-w-[480px] rounded-3xl p-8 z-10 border-primary/30">
+<div class="flex border-b border-slate-800 mb-8">
+<button class="flex-1 flex items-center justify-center gap-2 pb-4 border-b-2 border-primary text-primary font-bold transition-all">
+<span class="material-symbols-outlined">key</span>
+                        Sign In
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-2 pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-300 font-bold transition-all">
+<span class="material-symbols-outlined">edit_note</span>
+                        Sign Up
+                    </button>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400 block ml-1">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-slate-900/50 border border-slate-800 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="text-sm font-medium text-slate-400 block">Password</label>
+<a class="text-xs text-primary/70 hover:text-primary transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-slate-900/50 border border-slate-800 rounded-xl py-4 pl-12 pr-12 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2 px-1">
+<input class="rounded border-slate-800 bg-slate-900 text-primary focus:ring-primary/20" id="remember" type="checkbox"/>
+<label class="text-sm text-slate-400 cursor-pointer" for="remember">Remember me for 30 days</label>
+</div>
+<button class="w-full neon-glow bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-[0.98] shadow-primary/50">
+<span class="material-symbols-outlined font-bold">bolt</span>
+                        Sign In
+                    </button>
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-800"></div>
+</div>
+<div class="relative flex justify-center text-xs uppercase">
+<span class="bg-background-dark px-2 text-slate-500">Or continue with</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-800 hover:bg-slate-800/50 transition-colors text-slate-300 text-sm font-medium">
+<img alt="Google Logo" class="size-5" data-alt="Google colorful G logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY4Zn99FgohHZBb9hNqc-Jh4yBtWvCYPLN3R1743pMiN0G3nzsOKsEzn4P0iXUnjXY9_iy3F5Bb-m266qLUHmCotDgJWl7IWUBZ1a0uHAKQAHEpZGgcAyd-CVRjd8JahhbbNdHIsftHgfkyCnojcJakMrAkDRF0ZYWsg9jrEaZYpG9E7ItoZuayNSzusrEi8SMtRqgyw2AAp4OHq7ZCKc4K6bQMM7lBGR5bR_ZCDiMA7vBlDUzImtEgREUCo-Oy28Qaz3-nZNh0nbR"/>
+                            Google
+                        </button>
+<button class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-800 hover:bg-slate-800/50 transition-colors text-slate-300 text-sm font-medium">
+<span class="material-symbols-outlined text-xl">brand_awareness</span>
+                            LinkedIn
+                        </button>
+</div>
+</div>
+<div class="mt-8 text-center">
+<p class="text-slate-500 text-sm">
+                        Don't have an account? 
+                        <a class="text-primary hover:underline font-semibold ml-1" href="#">Create an account</a>
+</p>
+</div>
+</div>
+</main>
+<footer class="w-full py-8 text-center text-slate-600 text-xs border-t border-slate-900/50">
+<div class="flex justify-center gap-6 mb-2">
+<a class="hover:text-slate-400 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-slate-400 transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-slate-400 transition-colors" href="#">Contact Support</a>
+</div>
+<p>© 2024 AI Resume Builder. Empowering careers with intelligence.</p>
+</footer>
+</div>
+</body></html>

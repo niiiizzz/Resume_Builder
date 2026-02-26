@@ -80,10 +80,11 @@ def login_user(user_dict: dict):
 
 
 def logout_user():
-    """Clear all app-related session state to prevent stale data."""
+    """Clear ALL app-related session state to prevent stale data."""
     _keys_to_clear = [
-        "authenticated", "user", "dashboard_page", "generated_resume",
-        "show_pw_si", "show_pw_su",
+        "authenticated", "user", "dashboard_page",
+        "generated_resume", "generated_cover_letter", "generated_portfolio",
+        "dashboard_data",
     ]
     for key in _keys_to_clear:
         if key in st.session_state:
